@@ -16,6 +16,11 @@ models:
     config:
       materialized: "view"
 
+  - name: "trips_geom"
+    description: "Trips prepared for geometry analysis"
+    config:
+      materialized: "view"
+
   - name: "trips_stat"
     description: "Overall trips statistics"
 
@@ -30,3 +35,9 @@ models:
 
   - name: "trips_age_daily_stat"
     description: "Aggregation of daily trips statistics by user age"
+
+  - name: "parking_start_stat"
+    description: "Trip starts parking statistics by 500 m hexagons"
+
+  - name: "parking_finish_stat"
+    description: "Trip finish parking statistics by 10 m hexagons"
