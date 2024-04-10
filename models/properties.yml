@@ -1,0 +1,32 @@
+version: 2
+
+sources:
+  - name: "scooters_raw"
+    description: "Raw data provided by scooters service"
+    loader: "https://t.me/inzhenerka_dbt_bot"
+    tables:
+      - name: "trips"
+        description: "Scooter trips"
+      - name: "users"
+        description: "Users of scooter service"
+
+models:
+  - name: "trips_prep"
+    description: "Trips prepared for analysis"
+    config:
+      materialized: "view"
+
+  - name: "trips_stat"
+    description: "Overall trips statistics"
+
+  - name: "trips_stat_daily"
+    description: "Overall trips statistics per day"
+    config:
+      indexes:
+        - columns: ["date"]
+
+  - name: "trips_age_daily"
+    description: "Daily trips statistics by user age"
+
+  - name: "trips_age_daily_stat"
+    description: "Aggregation of daily trips statistics by user age"
