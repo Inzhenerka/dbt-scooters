@@ -9,13 +9,15 @@ sources:
         description: "Scooter trips"
       - name: "users"
         description: "Users of scooter service"
+      - name: "events"
+        description: "Raw user events with duplicates"
 
 models:
   - name: "trips_prep"
     description: "Trips prepared for analysis"
     config:
       materialized: "view"
-  
+
   - name: "trips_users"
     description: "Prepared trips enriched with users data"
     config:
@@ -46,3 +48,8 @@ models:
 
   - name: "parking_finish_stat"
     description: "Trip finish parking statistics by 10 m hexagons"
+
+  - name: "events_clean"
+    description: "User events without duplicates"
+    config:
+      materialized: "incremental"
