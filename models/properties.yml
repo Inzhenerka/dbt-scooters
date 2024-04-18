@@ -61,3 +61,8 @@ models:
       strategy: "merge"
       unique_key: [ "date" ]
       on_schema_change: "append_new_columns"
+
+  - name: "trips_concurrency"
+    description: "Number of simultaneous rides in time"
+    config:
+      materialized: "incremental"
