@@ -66,3 +66,9 @@ models:
     description: "Number of simultaneous rides in time"
     config:
       materialized: "incremental"
+
+  - name: "companies"
+    description: "Scooter satistics by company"
+
+  - name: "companies_trips"
+    description: "Trip satistics by company"
