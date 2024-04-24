@@ -54,6 +54,14 @@ models:
     config:
       materialized: "incremental"
 
+  - name: "events_full"
+    description: "User events enriched with meaningful types"
+    config:
+      materialized: "view"
+
+  - name: "events_stat"
+    description: "Overall user events statistics"
+
   - name: "revenue_daily"
     description: "Summary daily revenue"
     config:
