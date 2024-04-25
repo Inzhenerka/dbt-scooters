@@ -1,0 +1,10 @@
+group,age_start,age_end
+Kids (0-15),0,15
+Teenagers (16-19),16,19
+Young Adults (20-29),20,29
+Adults (30-39),30,39
+Middle Age (40-49),40,49
+Mature Adults (50-59),50,59
+Seniors (60-69),60,69
+Older Seniors (70-79),70,79
+Very Old (80+),80,100

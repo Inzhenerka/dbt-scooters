@@ -43,6 +43,9 @@ models:
   - name: "trips_age_daily_stat"
     description: "Aggregation of daily trips statistics by user age"
 
+  - name: "trips_age_group"
+    description: "Overall trips statistics by user age group"
+
   - name: "parking_start_stat"
     description: "Trip starts parking statistics by 500 m hexagons"
 
