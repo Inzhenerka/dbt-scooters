@@ -1,10 +1,6 @@
 version: 2
 
 seeds:
-  - name: "models"
-    description: "Scooter models info and statistics"
-    config:
-      delimiter: ","
 
   - name: "event_types"
     description: "Meaningful types of mobile app events"
