@@ -7,3 +7,8 @@ seeds:
 
   - name: "age_groups"
     description: "Age groups to split users by age for analysis"
+
+  - name: "models"
+    description: "Scooter models with company and statistics"
+    config:
+      delimiter: ","
