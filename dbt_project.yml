@@ -12,7 +12,11 @@ target-path: "target"
 clean-targets:
   - "target"
   - "dbt_packages"
+on-run-end:
+    - "grant usage on schema dbt_finance to finance;"
 models:
   dbt_scooters:
     +materialized: "table"
     +on_schema_change: "append_new_columns"
+    finance:
+      +schema: "finance"

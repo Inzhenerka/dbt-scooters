@@ -71,15 +71,6 @@ models:
   - name: "events_stat"
     description: "Overall user events statistics"
 
-  - name: "revenue_daily"
-    description: "Summary daily revenue"
-    config:
-      materialized: "incremental"
-      strategy: "merge"
-      unique_key: [ "date" ]
-      on_schema_change: "append_new_columns"
-      full_refresh: false
-
   - name: "trips_concurrency"
     description: "Number of simultaneous rides in time"
     config:
