@@ -17,6 +17,15 @@ sources:
         loaded_at_field: "finished_at at time zone 'UTC'"
       - name: "users"
         description: "Users of scooter service"
+        columns:
+          - name: "sex"
+            description: "User gender"
+            tests:
+              - accepted_values:
+                  values: [ "M", "F" ]
+              - not_null:
+                  config:
+                    severity: "warn"
       - name: "events"
         description: "Raw user events with duplicates"
 
