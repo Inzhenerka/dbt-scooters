@@ -72,6 +72,8 @@ models:
     tests:
       - unique:
           column_name: "date::text || age::text"
+      - unique_key:
+          columns: [ "date", "age" ]
 
   - name: "trips_age_daily_stat"
     description: "Aggregation of daily trips statistics by user age"

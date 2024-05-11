@@ -11,3 +11,13 @@ seeds:
 
   - name: "age_groups"
     description: "Age groups to split users by age for analysis"
+    columns:
+      - name: "group"
+        description: "Age group name for report"
+        tests: [ "unique_not_null" ]
+      - name: "age_start"
+        description: "Start age of group"
+        tests: [ "unique_not_null" ]
+      - name: "age_end"
+        description: "End age of group"
+        tests: [ "unique_not_null" ]
