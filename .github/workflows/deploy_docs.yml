@@ -1,0 +1,37 @@
+name: Deploy dbt docs (Data Catalog) to GitHub Pages
+
+on:
+  push:
+    branches: [dev]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install requirements
+        run: pip install dbt-core dbt-postgres
+
+      - name: Generate docs
+        run: dbt docs generate
+        env:
+          DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
+
+      - name: Prepare site files
+        run: |
+          mkdir ./site
+          cp target/index.html ./site/
+          cp target/manifest.json ./site/
+          cp target/catalog.json ./site/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
