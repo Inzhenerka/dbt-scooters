@@ -17,7 +17,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install requirements
-        run: pip install dbt-core dbt-postgres
+        run: |
+          pip install dbt-core dbt-postgres
+          dbt deps
 
       - name: Generate docs
         run: dbt docs generate

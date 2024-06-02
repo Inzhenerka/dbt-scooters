@@ -117,3 +117,14 @@ models:
         description: "Scooters manufacturing company"
         tests:
           - unique
+
+  - name: "sex_age_pivot"
+    description: "Trips per age grouped by sex"
+    tests:
+      - unique_key:
+          columns: [ "age" ]
+    columns:
+      - name: "age"
+        description: "Numerical age of user"
+        tests:
+          - "dbt_utils.not_constant"
