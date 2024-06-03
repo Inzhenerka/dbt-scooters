@@ -12,6 +12,8 @@ target-path: "target"
 clean-targets:
   - "target"
   - "dbt_packages"
+vars:
+  "dbt_date:time_zone": "Europe/Moscow"
 on-run-end:
     - "grant usage on schema dbt_finance to finance;"
 models:

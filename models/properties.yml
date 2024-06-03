@@ -43,6 +43,9 @@ models:
     description: "Trips prepared for analysis"
     config:
       materialized: "view"
+    tests:
+      - row_count_same:
+          compare_model: "source('scooters_raw', 'trips')"
 
   - name: "trips_users"
     description: "Prepared trips enriched with users data"
@@ -123,6 +126,8 @@ models:
     tests:
       - unique_key:
           columns: [ "age" ]
+      - dbt_expectations.expect_table_column_count_to_equal:
+          value: 3
     columns:
       - name: "age"
         description: "Numerical age of user"
