@@ -1,10 +1,10 @@
 packages:
-- package: dbt-labs/dbt_utils
-  version: 1.1.1
-- package: calogica/dbt_expectations
-  version: 0.10.3
-- package: mjirv/dbt_product_analytics
-  version: 0.3.1
-- package: calogica/dbt_date
-  version: 0.10.1
-sha1_hash: 36ca151479bb12bf7be4116fa8f6ec87f3de88c1
+  - package: dbt-labs/dbt_utils
+    version: 1.2.0
+  - package: calogica/dbt_expectations
+    version: 0.10.3
+  - package: mjirv/dbt_product_analytics
+    version: 0.3.1
+  - package: calogica/dbt_date
+    version: 0.10.1
+sha1_hash: 6feca7506afe1bdb22364513a1102540ef29105d
