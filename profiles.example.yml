@@ -1,0 +1,12 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: dpg-cpms9v88fa8c73anong0-a.frankfurt-postgres.render.com
+      port: 5432
+      user: admin
+      password: "{{ env_var('DBT_ENV_SECRET_PASSWORD') }}"
+      dbname: dev_tcz3
+      schema: dbt
+      threads: 4
