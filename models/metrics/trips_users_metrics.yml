@@ -93,10 +93,10 @@ metrics:
           offset_window: "1 month"
           alias: "users_count_prev_month"
 
-#  - name: "trips_per_scooter"
-#    label: "Trips per scooter"
-#    description: ""
-#    type: "ratio"
-#    type_params:
-#      numerator: "trips_count"
-#      denominator: "scooters_count"
+  - name: "trips_per_scooter"
+    label: "Trips per scooter"
+    description: ""
+    type: "ratio"
+    type_params:
+      numerator: "trips_count"
+      denominator: "scooters_count"
