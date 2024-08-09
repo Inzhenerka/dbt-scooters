@@ -40,3 +40,6 @@ macros:
       - name: "name"
         type: "string"
         description: "Role name"
+
+  - name: "create_postgis"
+    description: "Create postgis extension"
