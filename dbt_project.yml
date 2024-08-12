@@ -15,7 +15,7 @@ clean-targets:
 vars:
   "dbt_date:time_zone": "Europe/Moscow"
 on-run-end:
-    - "grant usage on schema dbt_finance to finance;"
+    - "grant usage on schema finance to finance;"
 models:
   dbt_scooters:
     +materialized: "table"
