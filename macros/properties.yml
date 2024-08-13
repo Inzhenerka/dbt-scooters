@@ -55,3 +55,55 @@ macros:
       - name: "node"
         type: "node"
         description: "dbt node to generate schema name for (not in use)"
+
+  - name: "select_first_value"
+    description: "Query database and get first value from first column of result"
+    arguments:
+      - name: "query"
+        type: "string"
+        description: "SQL query to scalar value from database during compilation"
+
+  - name: "get_meta_value"
+    description: "Get meta value from model configuration"
+    arguments:
+      - name: "model"
+        type: "relation"
+        description: "dbt model from which to retrieve the meta value"
+      - name: "meta_key"
+        type: "string"
+        description: "Key from meta dictionary"
+      - name: "def_value"
+        type: "any"
+        description: "Default value if key not found"
+
+  - name: "incremental_date_condition"
+    description: |
+      Get incremental SQL condition by date column for incremental model.
+      Macro uses parameters from 'incrementality' dictionary declared as meta of model.
+      Arguments also can be specified as variables overriding meta configuration.
+    arguments:
+      - name: "model"
+        type: "relation"
+        description: "Incremental dbt model to fill with date condition"
+      - name: "date"
+        type: "string"
+        description: |
+          Particular date to compute.
+          If specified it overrides other parameters and arguments.
+          Format: 'YYYY-MM-DD'
+      - name: "date_start"
+        type: "string"
+        description: |
+          Start date for incremental run. First date of incremental batch.
+          Format: 'YYYY-MM-DD'
+      - name: "days_max"
+        type: "integer"
+        description: |
+          Max size of incremental batch in days.
+          Default: 30
+      - name: "days_back_from_today"
+        type: "integer"
+        description: |
+          Number of days to step back from current date for incremental batch.
+          Allows to do not process incomplete data for current or recent dates.
+          Default: 1
