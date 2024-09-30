@@ -25,6 +25,8 @@ models:
       columns: true
     finance:
       +schema: "finance"
+      +grants:
+        select: [ "finance" ]
 seeds:
   dbt_scooters:
     +persist_docs:
