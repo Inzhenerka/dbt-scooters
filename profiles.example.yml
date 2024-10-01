@@ -3,10 +3,10 @@ default:
   outputs:
     dev:
       type: postgres
-      host: dpg-cqj4lrij1k6c739mmg8g-a.frankfurt-postgres.render.com
+      host: dpg-crd3cll2ng1s73fnn1eg-a.frankfurt-postgres.render.com
       port: 5432
       user: admin
       password: "{{ env_var('DBT_ENV_SECRET_PASSWORD') }}"
-      dbname: dev_zan7
+      dbname: dev_f0vi
       schema: dbt
       threads: 4
