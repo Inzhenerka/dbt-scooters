@@ -1,6 +1,6 @@
-name: 'dbt_scooters'
-version: '1.0.0'
-profile: 'dbt_scooters'
+name: "dbt_scooters"
+version: "1.0.0"
+profile: "dbt_scooters"
 model-paths: ["models"]
 analysis-paths: ["analyses"]
 test-paths: ["tests"]
@@ -12,5 +12,4 @@ clean-targets:
   - "dbt_packages"
 models:
   dbt_scooters:
-    example:
-      +materialized: view
+    +materialized: "table"
