@@ -17,6 +17,11 @@ models:
     config:
       materialized: "view"
 
+  - name: "trips_users"
+    description: "Prepared trips enriched with users data"
+    config:
+      materialized: "incremental"
+
   - name: "trips_stat"
     description: "Overall trips statistics"
 
