@@ -1,0 +1,5 @@
+type_id,type
+0,start_search
+1,book_scooter
+2,release_scooter
+3,cancel_search
