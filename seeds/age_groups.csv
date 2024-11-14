@@ -1,0 +1,9 @@
+group,age_start,age_end
+"Kid",0,12
+"Teen",13,19
+"Young Adult",20,29
+"Adult",30,39
+"Middle Aged",40,49
+"Senior",50,64
+"Elderly",65,79
+"Oldest Old",80,100

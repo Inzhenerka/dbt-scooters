@@ -40,6 +40,9 @@ models:
   - name: "trips_age_daily_stat"
     description: "Aggregation of daily trips statistics by user age"
 
+  - name: "trips_age_group"
+    description: "Overall trips statistics by user age group"
+
   - name: "trips_geom"
     description: "Trips prepared for geometry analysis"
     config:
