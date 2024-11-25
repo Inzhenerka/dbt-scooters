@@ -24,6 +24,10 @@ models:
     description: "Prepared trips enriched with users data"
     config:
       materialized: "incremental"
+      post-hook:
+        - "analyze dbt.trips_users"
+        - sql: "vacuum dbt.trips_users"
+          transaction: false
 
   - name: "trips_stat"
     description: "Overall trips statistics"
