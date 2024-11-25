@@ -13,3 +13,4 @@ clean-targets:
 models:
   dbt_scooters:
     +materialized: "table"
+    +on_schema_change: "append_new_columns"

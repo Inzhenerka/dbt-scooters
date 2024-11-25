@@ -1,7 +1,7 @@
 select
     sum(price_rub) as revenue_rub,
     "date",
-    now() at time zone 'utc' as updated_at
+    {{ updated_at() }}
 from
     {{ ref("trips_prep") }}
 {% if is_incremental() %}
