@@ -10,3 +10,16 @@ macros:
       - name: "ts_col"
         type: "string"
         description: "Timestamp column in timestamptz format"
+
+  - name: "trips_geom_stat"
+    description: "Count trips per hexagon of given size"
+    arguments:
+      - name: "trips_table"
+        type: "string"
+        description: "Trips table with geometry data"
+      - name: "geom_col"
+        type: "string"
+        description: "Column with geometry data"
+      - name: "grid"
+        type: "integer"
+        description: "Size of grid hexagon"
