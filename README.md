@@ -43,3 +43,7 @@ cd dbt_scooters
 - `dbt source freshness` - проверка актуальности данных в источниках
 - `dbt docs generate` - генерирует документацию проекта
 - `dbt docs serve` - запускает локальный сервер для просмотра документации
+
+## Полезные макросы
+
+- `dbt run-operation create_role --args "name: finance"` - создание роли в базе (на примере роли "finance")
