@@ -18,6 +18,15 @@ sources:
 
       - name: "users"
         description: "Users of scooter service"
+        columns:
+          - name: "sex"
+            description: "User gender"
+            data_tests:
+              - accepted_values:
+                  values: [ "M", "F" ]
+              - not_null:
+                  config:
+                    severity: "warn"
 
       - name: "events"
         description: "Raw user events with duplicates"
