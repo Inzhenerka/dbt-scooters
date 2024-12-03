@@ -10,4 +10,14 @@ seeds:
     description: "Meaningful types of mobile app events"
 
   - name: "age_groups"
-    description: "Age groups to split users for analysis"
+    description: "Age groups to split users by age for analysis"
+    columns:
+      - name: "group"
+        description: "Age group name for report"
+        data_tests: [ "unique_not_null" ]
+      - name: "age_start"
+        description: "Start age of group"
+        data_tests: [ "unique_not_null" ]
+      - name: "age_end"
+        description: "End age of group"
+        data_tests: [ "unique_not_null" ]
