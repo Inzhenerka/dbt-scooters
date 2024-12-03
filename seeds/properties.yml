@@ -2,12 +2,25 @@ version: 2
 
 seeds:
   - name: "scooters"
-    description: "Scooter models info and statistics"
+    description: >
+      Scooter models information and park statistics by model.
+      Includes information about the manufacturing company.
+      Data received from the service team and uploaded by Mark.
+      Data is current as of summer 2023.
     config:
       delimiter: ","
 
   - name: "event_types"
-    description: "Meaningful types of mobile app events"
+    description: "{{ doc('event_types') }}"
+    columns:
+      - name: "type_id"
+        description: >
+          An integer serving as a unique identifier for each event type.
+          It is used in user event tables as a foreign key to link events to their descriptions
+      - name: "type"
+        description: >
+          A string describing the event type, enhancing the interpretability of event data
+          by providing a human-readable label
 
   - name: "age_groups"
     description: "Age groups to split users by age for analysis"
