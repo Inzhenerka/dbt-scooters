@@ -89,12 +89,36 @@ models:
   - name: "parking_finish_stat"
     description: "Trip finish parking statistics by 10 m hexagons"
 
+  - name: "events_prep"
+    description: "User events prepared for following processing"
+    config:
+      materialized: "view"
+    columns:
+      - name: "date"
+        description: |
+          Date of event derived from timestamp.
+          Imitates Hive-styled partitioning of events by date.
+          It is needed for efficient incremental processing by engines
+          with partitioning support (i.e. Trino).
+
   - name: "events_clean"
     description: "User events without duplicates"
     config:
       materialized: "incremental"
       strategy: "merge"
       unique_key: [ "user_id", "timestamp", "type_id" ]
+
+  - name: "events_clean_v2"
+    description: "User events without duplicates"
+    config:
+      materialized: "incremental"
+      strategy: "merge"
+      unique_key: [ "user_id", "timestamp", "type_id" ]
+      meta:
+        owner: "Igor Dushnin"
+        incrementality:
+          start_date: "2023-06-01"
+          days_max: 60
 
   - name: "trips_concurrency"
     description: "Number of simultaneous rides in time"
@@ -116,6 +140,11 @@ models:
     description: "User events enriched with meaningful types"
     config:
       materialized: "view"
+      meta:
+        unique_key: [ "user_id", "timestamp", "type_id" ]
+        testing:
+          days_max: 60
+    data_tests: [ "unique_key_meta" ]
 
   - name: "events_stat"
     description: "Overall user events statistics"
