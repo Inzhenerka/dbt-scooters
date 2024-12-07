@@ -27,6 +27,12 @@ pip install dbt dbt-postgres
 cd dbt_scooters
 ```
 
+4. Активируйте PostGIS в базе PostgreSQL, если еще этого не делали:
+
+```sql
+create extension postgis schema public;
+```
+
 ## Конфигурация
 
 Обновите конфигурационный файл `~/profiles.yml` с вашими данными доступа к базе данных.
