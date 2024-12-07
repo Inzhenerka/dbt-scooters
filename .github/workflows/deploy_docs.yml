@@ -1,0 +1,41 @@
+name: Deploy dbt docs (Data Catalog) to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install requirements
+        run: pip install -r requirements.txt
+          
+      - name: Prepare connection profile
+        run: cp profiles.example.yml profiles.yml
+
+      - name: Generate docs
+        run: dbt docs generate
+        env:
+          DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
+
+      - name: Prepare site files
+        run: |
+          mkdir site
+          cp target/index.html site/
+          cp target/manifest.json site/
+          cp target/catalog.json site/
+
+      - name: Commit site for GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: site
