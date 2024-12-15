@@ -3,3 +3,5 @@ packages:
     version: 1.3.0
   - package: calogica/dbt_expectations
     version: 0.10.4
+  - package: mjirv/dbt_product_analytics
+    version: 0.3.1

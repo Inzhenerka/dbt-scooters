@@ -3,6 +3,8 @@ packages:
     version: 1.3.0
   - package: calogica/dbt_expectations
     version: 0.10.4
+  - package: mjirv/dbt_product_analytics
+    version: 0.3.1
   - package: calogica/dbt_date
     version: 0.10.1
-sha1_hash: 65a40bd17a87c0f0b5c4e1b52b02d906189ec56e
+sha1_hash: f495f07f6af7f26531694f04b9d72298c4b011b3
