@@ -17,7 +17,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install requirements
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          dbt deps
           
       - name: Prepare connection profile
         run: cp profiles.example.yml profiles.yml
