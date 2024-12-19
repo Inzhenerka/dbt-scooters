@@ -107,9 +107,11 @@ models:
   - name: "events_clean"
     description: "User events without duplicates"
     config:
-      materialized: "incremental"
-      strategy: "merge"
+      # materialized: "incremental"
+      materialized: "table"
+      # strategy: "merge"
       unique_key: [ "user_id", "timestamp", "type_id" ]
+      event_time: "timestamp"
 
   - name: "events_clean_v2"
     description: "User events without duplicates"
@@ -143,6 +145,21 @@ models:
     description: "User events enriched with meaningful types"
     config:
       materialized: "view"
+      meta:
+        unique_key: [ "user_id", "timestamp", "type_id" ]
+        testing:
+          days_max: 60
+    data_tests: [ "unique_key_meta" ]
+
+  - name: "events_full_v2"
+    description: "User events enriched with meaningful types"
+    config:
+      materialized: "incremental"
+      strategy: "microbatch"
+      event_time: "timestamp"
+      unique_key: [ "user_id", "timestamp", "type_id" ]
+      batch_size: "day"
+      begin: '2023-06-01'
       meta:
         unique_key: [ "user_id", "timestamp", "type_id" ]
         testing:

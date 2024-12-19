@@ -3,3 +3,4 @@ dbt_packages/
 logs/
 .idea
 .vscode
+venv
