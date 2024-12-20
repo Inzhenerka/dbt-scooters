@@ -175,3 +175,6 @@ models:
       Retention analysis which tells how many people
       started search for scooter and finally booked it on or after
       1, 7, 14 days (or weeks, months, years), etc
+
+  - name: "metricflow_time_spine"
+    description: "Time spine calendar for metricflow"

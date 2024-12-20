@@ -1,0 +1,108 @@
+semantic_models:
+  - name: "trips_users_metrics"
+    description: "Trips with users metadata fact table"
+    model: "ref('trips_users')"
+    entities: 
+      - name: "trip"
+        type: "primary"
+        expr: "id"
+
+      - name: "user"
+        type: "foreign"
+        expr: "user_id"
+
+      - name: "scooter"
+        type: "foreign"
+        expr: "scooter_hw_id"
+
+    dimensions:
+      - name: "sex"
+        type: "categorical"
+
+      - name: "age"
+        type: "categorical"
+
+      - name: "is_free"
+        type: "categorical"
+
+      - name: "started_at"
+        type: "time"
+        expr: "date(started_at)"
+        type_params:
+          time_granularity: "day"
+
+      - name: "finished_date"
+        type: "time"
+        expr: "date(finished_at)"
+        type_params:
+          time_granularity: "day"
+
+    defaults:
+      agg_time_dimension: "started_at"
+
+    measures:   
+      - name: "revenue_sum"
+        description: "The total amount of revenue (in rubles)"
+        agg: "sum"
+        expr: "price_rub"
+        create_metric: True
+
+      - name: "trips_count"
+        description: "Total number of performed trips"
+        expr: "1"
+        agg: "sum"
+        create_metric: True
+
+      - name: "users_count"
+        description: "Distinct count of users making trips"
+        agg: "count_distinct"
+        expr: "user_id"
+        create_metric: True
+
+      - name: "revenue_avg"
+        description: "Average revenue (in rubles)"
+        agg: "average"
+        expr: "price_rub"
+
+      - name: "free_trips_count"
+        description: "Total number of free (unpaid) trips"
+        agg: "sum_boolean"
+        expr: "is_free"
+        create_metric: True
+
+      - name: "duration_m_median"
+        description: "Median duration of trip in minutes"
+        agg: "median"
+        expr: "duration_s / 60.0"
+        create_metric: True
+
+metrics:
+  - name: "revenue_avg"
+    label: "Average revenue"
+    description: "Average revenue for paid trips"
+    type: "simple"
+    type_params:
+      measure:
+        name: "revenue_avg"
+    filter: "{{ Dimension('trip__is_free') }} = false"
+
+  - name: "revenue_cumsum"
+    label: "Cumulative revenue"
+    description: "Cumulative revenue (in rubles)"
+    type: "cumulative"
+    type_params:
+      measure:
+        name: "revenue_sum"
+    filter: "{{ Dimension('trip__is_free') }} = false"
+
+  - name: "users_count_growth_mom"
+    label: "User total growth % M/M"
+    description: "Percentage growth of unique users to 1 month ago"
+    type: "derived"
+    type_params:
+      expr: "(users_count - users_count_prev_month) * 100.0 / users_count_prev_month"
+      metrics:
+        - name: "users_count"
+        - name: "users_count"
+          offset_window: "1 month"
+          alias: "users_count_prev_month"
