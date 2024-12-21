@@ -1,0 +1,43 @@
+semantic_models:
+  - name: "scooters_metrics"
+    description: "Scooter models"
+    model: "ref('scooters')"
+    defaults:
+      agg_time_dimension: "actual_at"
+
+    entities:
+      - name: "scooter"
+        type: "primary"
+        expr: "hardware_id"
+
+    dimensions:  
+      - name: "company"
+        type: "categorical"
+
+      - name: "model"
+        type: "categorical"
+
+      - name: "actual_at"
+        type: "time"
+        expr: "date(now())"
+        type_params:
+          time_granularity: "day"
+
+    measures:
+      - name: "scooters_count"
+        description: "The total amount of scooters in park"
+        agg: "sum"
+        expr: "scooters"
+        create_metric: True
+
+      - name: "models_count"
+        description: "Total number of scooter models"
+        agg: "count_distinct"
+        expr: "model"
+        create_metric: True
+
+      - name: "companies_count"
+        description: "Total number of scooter company brands"
+        agg: "count_distinct"
+        expr: "company"
+        create_metric: True
