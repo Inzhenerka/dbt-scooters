@@ -178,3 +178,51 @@ models:
 
   - name: "metricflow_time_spine"
     description: "Time spine calendar for metricflow"
+
+  - name: "users_prep"
+    description: "Users prepared for analysis without sensitive data"
+    config:
+      materialized: "view"
+
+  - name: "users_class_weekly_trips"
+    description: "User classification based on trips during the week"
+    tests:
+      - unique_key:
+          columns: [ "user_id" ]
+    columns:
+      - name: "regular"
+        description: "Regular user, rides at least 3 days a week"
+      - name: "fan"
+        description: "Enthusiast, uses the service on average at least 6 days a week"
+
+  - name: "users_class_weekly_destination_trips"
+    description: "User classification based on trips during the week considering the destination"
+    tests:
+      - unique_key:
+          columns: [ "user_id" ]
+    columns:
+      - name: "to_work"
+        description: "Travels to the same place (to work) in the morning at least three times a week"
+
+  - name: "users_class_monthly_trips"
+    description: "User classification based on the number of trips per month"
+    tests:
+      - unique_key:
+          columns: [ "user_id" ]
+    columns:
+      - name: "rare"
+        description: "infrequent/occasional trips, no more than 2 trips per month"
+
+  - name: "users_class"
+    description: >
+      Combining all features into a consolidated table.
+      Joining with the users table to label each user
+    tests:
+      - unique_key:
+          columns: [ "user_id" ]
+
+  - name: "users_class_stat"
+    description: >
+      Calculation of overall group statistics:
+        - number of users in each group
+        - total number of users for information and validation
