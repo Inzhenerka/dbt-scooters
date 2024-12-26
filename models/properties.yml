@@ -186,7 +186,7 @@ models:
 
   - name: "users_class_weekly_trips"
     description: "User classification based on trips during the week"
-    tests:
+    data_tests:
       - unique_key:
           columns: [ "user_id" ]
     columns:
@@ -197,7 +197,7 @@ models:
 
   - name: "users_class_weekly_destination_trips"
     description: "User classification based on trips during the week considering the destination"
-    tests:
+    data_tests:
       - unique_key:
           columns: [ "user_id" ]
     columns:
@@ -206,7 +206,7 @@ models:
 
   - name: "users_class_monthly_trips"
     description: "User classification based on the number of trips per month"
-    tests:
+    data_tests:
       - unique_key:
           columns: [ "user_id" ]
     columns:
@@ -217,7 +217,7 @@ models:
     description: >
       Combining all features into a consolidated table.
       Joining with the users table to label each user
-    tests:
+    data_tests:
       - unique_key:
           columns: [ "user_id" ]
 
