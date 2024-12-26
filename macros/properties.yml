@@ -82,3 +82,13 @@ macros:
           Number of days to step back from current date for incremental batch.
           Allows to do not process incomplete data for current or recent dates.
           Default: 1
+
+  - name: "trips_age_sex_report"
+    description: "Compute trips statistics in time by age and gender of user"
+    arguments:
+      - name: "trips_table"
+        type: "string"
+        description: "Table with source trips data enriched with user data"
+      - name: "granularity"
+        type: "string"
+        description: "Time granularity for report (daily/weekly/monthly)"
