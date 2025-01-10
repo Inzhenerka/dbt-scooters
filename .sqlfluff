@@ -1,0 +1,6 @@
+[sqlfluff]
+dialect = postgres
+templater = dbt
+
+[sqlfluff:templater:jinja]
+apply_dbt_builtins = True
