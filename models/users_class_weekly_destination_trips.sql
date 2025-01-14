@@ -5,7 +5,7 @@ daily_stat_cte as (
       morning_trips - the number of morning trips */
     select
         user_id,
-        st_reduceprecision(
+        st_snaptogrid(
             st_makepoint(finish_lon, finish_lat), 0.001
             ) as destination,
         "date",
