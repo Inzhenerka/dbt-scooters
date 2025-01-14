@@ -4,3 +4,6 @@ templater = dbt
 
 [sqlfluff:templater:jinja]
 apply_dbt_builtins = True
+
+[sqlfluff:rules:references.quoting]
+prefer_quoted_keywords = True
