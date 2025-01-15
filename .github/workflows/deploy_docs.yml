@@ -29,6 +29,16 @@ jobs:
       - name: Run linter
         run: sqlfluff lint
 
+      - name: Restore project state
+        id: restore-state
+        uses: actions/cache/restore@v4
+        with:
+          path: target_state
+          key: target_state
+
+      - run: ls -R
+        if: steps.restore-state.outputs.cache-hit != 'true'
+
       - name: Compile project state
         run: dbt compile --target-path target_state
 
