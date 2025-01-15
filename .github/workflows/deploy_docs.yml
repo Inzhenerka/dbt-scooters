@@ -16,10 +16,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v4
-      - name: Display structure of downloaded files
-        run: ls -R
-
       - name: Install requirements
         run: |
           pip install -r requirements.txt
@@ -33,17 +29,12 @@ jobs:
         env:
           DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
 
-      - name: Retrieve stored dbt artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: dbt-prod-artifacts
-          path: target_state
-
       - name: Store dbt artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/cache/save@v4
+        id: cache
         with:
-          name: dbt-prod-artifacts
           path: target
+          key: dbt-prod-target
 
       - name: Generate docs
         run: dbt docs generate
