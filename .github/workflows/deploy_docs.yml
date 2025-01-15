@@ -11,6 +11,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
 
     steps:
       - name: Checkout repository
@@ -26,20 +28,19 @@ jobs:
 
       - name: Run linter
         run: sqlfluff lint
-        env:
-          DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
 
-      - name: Store dbt artifacts
+      - name: Compile project state
+        run: dbt compile --target-path target_state
+
+      - name: Store project state
         uses: actions/cache/save@v4
         id: cache
         with:
-          path: target
-          key: dbt-prod-target
+          path: target_state
+          key: target_state
 
       - name: Generate docs
         run: dbt docs generate
-        env:
-          DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
 
       - name: Prepare site files
         run: |
