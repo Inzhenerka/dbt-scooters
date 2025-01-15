@@ -29,6 +29,12 @@ jobs:
         env:
           DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
 
+      - name: Store dbt artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbt-prod-artifacts
+          path: target
+
       - name: Generate docs
         run: dbt docs generate
         env:
