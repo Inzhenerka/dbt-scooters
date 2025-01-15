@@ -11,6 +11,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
 
     steps:
       - name: Checkout repository
@@ -26,13 +28,9 @@ jobs:
 
       - name: Run linter
         run: sqlfluff lint
-        env:
-          DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
 
       - name: Generate docs
         run: dbt docs generate
-        env:
-          DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
 
       - name: Prepare site files
         run: |
