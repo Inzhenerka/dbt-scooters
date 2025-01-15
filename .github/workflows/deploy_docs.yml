@@ -29,14 +29,6 @@ jobs:
       - name: Run linter
         run: sqlfluff lint
 
-      - name: Restore project state
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          path: target_state
-
-      - run: ls -R
-
       - name: Generate docs
         run: dbt docs generate
 
