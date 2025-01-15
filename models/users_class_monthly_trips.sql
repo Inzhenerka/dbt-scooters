@@ -11,6 +11,7 @@ with monthly_stat_cte as (
         1,
         2
 )
+
 /* User profiling based on the number of trips per month:
   rare - infrequent/occasional trips, no more than 2 trips per month */
 select
