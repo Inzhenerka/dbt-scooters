@@ -28,6 +28,12 @@ jobs:
         run: sqlfluff lint
         env:
           DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
+          
+      - name: Retrieve stored dbt artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dbt-prod-artifacts
+          path: target_state
 
       - name: Store dbt artifacts
         uses: actions/upload-artifact@v4
