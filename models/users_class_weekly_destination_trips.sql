@@ -5,10 +5,10 @@ daily_stat_cte as (
       morning_trips - the number of morning trips */
     select
         user_id,
-        "date",
         st_snaptogrid(
             st_makepoint(finish_lon, finish_lat), 0.001
         ) as destination,
+        "date",
         count(
             case when extract(
                 hour from started_at at time zone 'Europe/Moscow'

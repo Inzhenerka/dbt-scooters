@@ -1,14 +1,10 @@
 [sqlfluff]
 dialect = postgres
 templater = dbt
-warnings = RF02, RF06
-exclude_rules = RF04, LT05, ST07
+exclude_rules = ST07
 
 [sqlfluff:templater:jinja]
 apply_dbt_builtins = True
 
 [sqlfluff:rules:references.quoting]
 prefer_quoted_keywords = True
-
-[sqlfluff:rules:references.keywords]
-quoted_identifiers_policy=all

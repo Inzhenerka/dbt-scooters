@@ -18,4 +18,4 @@ select
 from
     trips_cte as t
 inner join {{ ref("companies") }} as c
-    on t.company = c.company
+    using (company)
