@@ -31,11 +31,9 @@ jobs:
       - name: 🏗️ Build production environment
         run: dbt build --target prod
 
-      - name: 📇 Generate Data Catalog
-        run: dbt docs generate --target prod
-
-      - name: 🗃️ Prepare Data Catalog files
+      - name: 🗃️ Generate Data Catalog
         run: |
+          dbt docs generate --target prod
           mkdir docs
           cp target/index.html docs/
           cp target/manifest.json docs/
