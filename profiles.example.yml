@@ -5,7 +5,7 @@ dbt_scooters:
       host: db-stand.inzhenerka-cloud.com
       pass: "{{ env_var('DBT_ENV_SECRET_PASSWORD') }}"
       port: 5432
-      schema: dbt
+      schema: dbt_dev
       threads: 4
       type: postgres
       user: dbtuser
@@ -14,7 +14,7 @@ dbt_scooters:
       host: db-stand.inzhenerka-cloud.com
       pass: "{{ env_var('DBT_ENV_SECRET_PASSWORD') }}"
       port: 5432
-      schema: dbt_prod
+      schema: dbt
       threads: 4
       type: postgres
       user: dbtuser
