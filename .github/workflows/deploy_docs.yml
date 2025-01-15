@@ -29,6 +29,9 @@ jobs:
       - name: Run linter
         run: sqlfluff lint
 
+      - name: Build production environment
+        run: dbt build --target prod
+
       - name: Generate docs
         run: dbt docs generate
 
