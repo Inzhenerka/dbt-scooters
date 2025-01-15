@@ -30,24 +30,12 @@ jobs:
         run: sqlfluff lint
 
       - name: Restore project state
-        id: restore-state
-        uses: actions/cache/restore@v4
+        uses: actions/checkout@v4
         with:
+          ref: gh-pages
           path: target_state
-          key: target_state
 
       - run: ls -R
-        if: steps.restore-state.outputs.cache-hit != 'true'
-
-      - name: Compile project state
-        run: dbt compile --target-path target_state
-
-      - name: Store project state
-        uses: actions/cache/save@v4
-        id: cache
-        with:
-          path: target_state
-          key: target_state
 
       - name: Generate docs
         run: dbt docs generate
