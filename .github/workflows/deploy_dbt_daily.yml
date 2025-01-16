@@ -1,4 +1,4 @@
-name: 🚀 Deploy dbt project to production with Data Catalog (daily)
+name: 🚀 Daily deploy dbt project to production
 
 on:
   workflow_dispatch:
