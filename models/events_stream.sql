@@ -2,5 +2,5 @@
     from=ref("events_full"),
     event_type_col="type",
     user_id_col="user_id",
-    date_col='date("timestamp")'
+    date_col='"date"'
 ) }}
