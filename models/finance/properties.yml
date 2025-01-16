@@ -22,6 +22,9 @@ models:
       description: "When row was updated last time"
       data_type: "timestamptz"
 
+  - name: "revenue_daily_stat"
+    description: "Overall daily revenue statistics"
+
   - name: "revenue_user_monthly"
     description: "Monthly total revenue by user (ignoring free trips)"
     data_tests:
