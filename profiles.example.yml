@@ -3,7 +3,7 @@ dbt_scooters:
     dev:
       dbname: dbt_scooters
       host: db-stand.inzhenerka-cloud.com
-      pass: "{{ env_var('DBT_ENV_SECRET_PASSWORD2') }}"
+      pass: "{{ env_var('DBT_ENV_SECRET_PASSWORD') }}"
       port: 5432
       schema: dbt_dev
       threads: 4

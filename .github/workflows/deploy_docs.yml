@@ -28,7 +28,7 @@ jobs:
       - name: Generate docs
         run: uv run dbt docs generate
         env:
-          DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
+          DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD2 }}
 
       - name: Prepare site files
         run: |
