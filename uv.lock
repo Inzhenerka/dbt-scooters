@@ -283,6 +283,11 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/a4/41/38c194f6c8faf601285ce9d7155f7268fef213de88b4bb8f0400d0bb02be/dbt_metricflow-0.10.1-py3-none-any.whl", hash = "sha256:9cdd364fe29cc6b7419a0a967952950cdf177f4f1ff2248db898e25e869955c5", size = 39309, upload-time = "2025-09-18T22:48:19.423Z" },
 ]
 
+[package.optional-dependencies]
+dbt-postgres = [
+    { name = "dbt-postgres" },
+]
+
 [[package]]
 name = "dbt-postgres"
 version = "1.9.1"
@@ -317,14 +322,14 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "dbt-core" },
-    { name = "dbt-metricflow" },
+    { name = "dbt-metricflow", extra = ["dbt-postgres"] },
     { name = "dbt-postgres" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "dbt-core", specifier = "==1.10.11" },
-    { name = "dbt-metricflow", specifier = "==0.10.1" },
+    { name = "dbt-metricflow", extras = ["dbt-postgres"], specifier = "==0.10.1" },
     { name = "dbt-postgres", specifier = "==1.9.1" },
 ]
 
