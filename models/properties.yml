@@ -21,9 +21,10 @@ sources:
             data_tests:
               - not_null
               - relationships:
-                  name: "every_trip_has_user"
-                  to: "source('scooters_raw', 'users')"
-                  field: "id"
+                  arguments:
+                    name: "every_trip_has_user"
+                    to: "source('scooters_raw', 'users')"
+                    field: "id"
 
       - name: "users"
         description: "Users of scooter service"
