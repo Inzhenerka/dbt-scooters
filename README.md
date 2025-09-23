@@ -14,17 +14,16 @@ https://inzhenerka.github.io/dbt-scooters
 
 ## Быстрый старт
 
-1. Убедитесь, что у вас установлен Python и pip:
+1. Убедитесь, что у вас установлен пакетный менеджер uv:
 
 ```bash
-python --version
-pip --version
+uv --version
 ```
 
-2. Установите dbt и другие зависимости:
+2. Установите зависимости проекта (dbt и адаптер postgres):
    
 ```bash
-pip install -r requirements.txt
+uv sync
 ```
 
 3. Клонируйте репозиторий, а затем перейдите в директорию проекта:
@@ -55,6 +54,8 @@ create extension postgis schema public;
 - `dbt source freshness` - проверка актуальности данных в источниках
 - `dbt docs generate` - генерирует документацию проекта
 - `dbt docs serve` - запускает локальный сервер для просмотра документации
+
+Примечание: если виртуальное окружение не активно, используйте `uv run dbt <command>`.
 
 ## Полезные макросы
 
