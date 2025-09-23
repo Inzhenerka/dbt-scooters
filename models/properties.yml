@@ -49,7 +49,8 @@ models:
       materialized: "view"
     data_tests:
       - row_count_equal:
-          compare_model: "source('scooters_raw', 'trips')"
+          arguments:
+            compare_model: "source('scooters_raw', 'trips')"
 
   - name: "trips_users"
     description: "Prepared trips enriched with users data"
