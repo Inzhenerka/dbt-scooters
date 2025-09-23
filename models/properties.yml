@@ -166,9 +166,11 @@ models:
     description: "Trips per age grouped by sex"
     data_tests:
       - unique_key:
-          columns: [ "age" ]
+          arguments:
+            columns: [ "age" ]
       - dbt_expectations.expect_table_column_count_to_equal:
-          value: 3
+          arguments:
+            value: 3
     columns:
       - name: "age"
         description: "Numerical age of user"
