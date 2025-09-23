@@ -248,16 +248,19 @@ models:
     description: "Daily trips statistics by user age and gender"
     data_tests:
       - unique_key:
-          columns: [ "date", "age", "sex" ]
+          arguments:
+            columns: [ "date", "age", "sex" ]
 
   - name: "trips_age_sex_weekly"
     description: "Weekly trips statistics by user age and gender"
     data_tests:
       - unique_key:
-          columns: [ "week", "age", "sex" ]
+          arguments:
+            columns: [ "week", "age", "sex" ]
 
   - name: "trips_age_sex_monthly"
     description: "Monthly trips statistics by user age and gender"
     data_tests:
       - unique_key:
-          columns: [ "month", "age", "sex" ]
+          arguments:
+            columns: [ "month", "age", "sex" ]
