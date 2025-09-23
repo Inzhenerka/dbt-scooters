@@ -8,3 +8,8 @@ dependencies = [
     "dbt-metricflow[dbt-postgres]==0.10.1",
     "dbt-postgres==1.9.1",
 ]
+
+[dependency-groups]
+dev = [
+    "sqlfluff-templater-dbt==3.4.2",
+]
