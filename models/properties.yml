@@ -49,7 +49,8 @@ models:
       materialized: "view"
     data_tests:
       - row_count_equal:
-          compare_model: "source('scooters_raw', 'trips')"
+          arguments:
+            compare_model: "source('scooters_raw', 'trips')"
 
   - name: "trips_users"
     description: "Prepared trips enriched with users data"
@@ -165,9 +166,11 @@ models:
     description: "Trips per age grouped by sex"
     data_tests:
       - unique_key:
-          columns: [ "age" ]
+          arguments:
+            columns: [ "age" ]
       - dbt_expectations.expect_table_column_count_to_equal:
-          value: 3
+          arguments:
+            value: 3
     columns:
       - name: "age"
         description: "Numerical age of user"
@@ -180,8 +183,14 @@ models:
       started search for scooter and finally booked it on or after
       1, 7, 14 days (or weeks, months, years), etc
 
-  - name: "metricflow_time_spine"
-    description: "Time spine calendar for metricflow"
+  - name: time_spine_daily
+    config:
+      materialized: "table"
+    time_spine:
+      standard_granularity_column: date_day
+    columns:
+      - name: date_day
+        granularity: day
 
   - name: "users_prep"
     description: "Users prepared for analysis without sensitive data"
@@ -192,7 +201,8 @@ models:
     description: "User classification based on trips during the week"
     data_tests:
       - unique_key:
-          columns: [ "user_id" ]
+          arguments:
+            columns: [ "user_id" ]
     columns:
       - name: "regular"
         description: "Regular user, rides at least 3 days a week"
@@ -203,7 +213,8 @@ models:
     description: "User classification based on trips during the week considering the destination"
     data_tests:
       - unique_key:
-          columns: [ "user_id" ]
+          arguments:
+            columns: [ "user_id" ]
     columns:
       - name: "to_work"
         description: "Travels to the same place (to work) in the morning at least three times a week"
@@ -212,7 +223,8 @@ models:
     description: "User classification based on the number of trips per month"
     data_tests:
       - unique_key:
-          columns: [ "user_id" ]
+          arguments:
+            columns: [ "user_id" ]
     columns:
       - name: "rare"
         description: "infrequent/occasional trips, no more than 2 trips per month"
@@ -223,7 +235,8 @@ models:
       Joining with the users table to label each user
     data_tests:
       - unique_key:
-          columns: [ "user_id" ]
+          arguments:
+            columns: [ "user_id" ]
 
   - name: "users_class_stat"
     description: >
@@ -235,16 +248,19 @@ models:
     description: "Daily trips statistics by user age and gender"
     data_tests:
       - unique_key:
-          columns: [ "date", "age", "sex" ]
+          arguments:
+            columns: [ "date", "age", "sex" ]
 
   - name: "trips_age_sex_weekly"
     description: "Weekly trips statistics by user age and gender"
     data_tests:
       - unique_key:
-          columns: [ "week", "age", "sex" ]
+          arguments:
+            columns: [ "week", "age", "sex" ]
 
   - name: "trips_age_sex_monthly"
     description: "Monthly trips statistics by user age and gender"
     data_tests:
       - unique_key:
-          columns: [ "month", "age", "sex" ]
+          arguments:
+            columns: [ "month", "age", "sex" ]

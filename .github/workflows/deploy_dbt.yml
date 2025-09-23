@@ -17,16 +17,19 @@ jobs:
 
     steps:
       - name: ⬇️ Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: ⚙️ Install requirements and prepare profiles
+      - name: 📦 Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: ⚙️ Install dependencies and prepare profiles
         run: |
-          pip install -r requirements.txt
-          dbt deps
+          uv sync --locked
+          uv run dbt deps
           cp profiles.example.yml profiles.yml
 
       - name: ✅ Run linter
-        run: sqlfluff lint
+        run: uv run sqlfluff lint
 
       - name: ⬇️ Checkout previous state
         uses: actions/checkout@v4
@@ -35,11 +38,11 @@ jobs:
           path: target_state
 
       - name: 🏗️ Build production environment
-        run: dbt build -s state:modified+ --state target_state --target prod
+        run: uv run dbt build -s state:modified+ --state target_state --target prod
 
       - name: 🗃️ Generate Data Catalog
         run: |
-          dbt docs generate --target prod
+          uv run dbt docs generate --target prod
           mkdir docs
           cp target/index.html docs/
           cp target/manifest.json docs/
