@@ -8,7 +8,7 @@ dbt_scooters:
       schema: dbt_dev
       threads: 4
       type: postgres
-      user: dbt_read
+      user: dbtuser
     prod:
       dbname: dbt_scooters
       host: db-stand.inzhenerka-cloud.com
@@ -17,5 +17,5 @@ dbt_scooters:
       schema: dbt
       threads: 4
       type: postgres
-      user: dbt_read
+      user: dbtuser
   target: dev
