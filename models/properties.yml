@@ -23,7 +23,8 @@ sources:
             description: "User gender"
             data_tests:
               - accepted_values:
-                  values: [ "M", "F" ]
+                  arguments:
+                    values: [ "M", "F" ]
               - not_null:
                   config:
                     severity: "warn"
