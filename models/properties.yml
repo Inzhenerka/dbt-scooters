@@ -183,5 +183,11 @@ models:
       started search for scooter and finally booked it on or after
       1, 7, 14 days (or weeks, months, years), etc
 
-  - name: "metricflow_time_spine"
-    description: "Time spine calendar for metricflow"
+  - name: time_spine_daily
+    config:
+      materialized: "table"
+    time_spine:
+      standard_granularity_column: date_day
+    columns:
+      - name: date_day
+        granularity: day
