@@ -21,9 +21,10 @@ sources:
             data_tests:
               - not_null
               - relationships:
-                  name: "every_trip_has_user"
-                  to: "source('scooters_raw', 'users')"
-                  field: "id"
+                  arguments:
+                    name: "every_trip_has_user"
+                    to: "source('scooters_raw', 'users')"
+                    field: "id"
 
       - name: "users"
         description: "Users of scooter service"
@@ -32,7 +33,8 @@ sources:
             description: "User gender"
             data_tests:
               - accepted_values:
-                  values: [ "M", "F" ]
+                  arguments:
+                    values: [ "M", "F" ]
               - not_null:
                   config:
                     severity: "warn"
@@ -47,7 +49,8 @@ models:
       materialized: "view"
     data_tests:
       - row_count_equal:
-          compare_model: "source('scooters_raw', 'trips')"
+          arguments:
+            compare_model: "source('scooters_raw', 'trips')"
 
   - name: "trips_users"
     description: "Prepared trips enriched with users data"
@@ -71,9 +74,11 @@ models:
     description: "Daily trips statistics by user age"
     data_tests:
       - unique:
-          column_name: "date::text || age::text"
+          arguments:
+            column_name: "date::text || age::text"
       - unique_key:
-          columns: [ "date", "age" ]
+          arguments:
+            columns: [ "date", "age" ]
 
   - name: "trips_age_daily_stat"
     description: "Aggregation of daily trips statistics by user age"
