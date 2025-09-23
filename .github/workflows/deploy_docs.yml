@@ -2,7 +2,7 @@ name: Deploy dbt docs (Data Catalog) to GitHub Pages
 
 on:
   push:
-    branches: [mission10_3]
+    branches: [main]
 
 permissions:
   contents: write
@@ -28,7 +28,7 @@ jobs:
       - name: Generate docs
         run: uv run dbt docs generate
         env:
-          DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD2 }}
+          DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
 
       - name: Prepare site files
         run: |
