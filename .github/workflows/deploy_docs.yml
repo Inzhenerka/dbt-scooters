@@ -14,18 +14,21 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Install requirements
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install dependencies
         run: |
-          pip install -r requirements.txt
-          dbt deps
-          
+          uv sync --locked
+          uv run dbt deps
+
       - name: Prepare connection profile
         run: cp profiles.example.yml profiles.yml
 
       - name: Generate docs
-        run: dbt docs generate
+        run: uv run dbt docs generate
         env:
           DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
 
