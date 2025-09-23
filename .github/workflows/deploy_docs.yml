@@ -28,7 +28,7 @@ jobs:
         run: cp profiles.example.yml profiles.yml
 
       - name: Run linter
-        run: sqlfluff lint
+        run: uv run sqlfluff lint
         env:
           DBT_ENV_SECRET_PASSWORD: ${{ secrets.DBT_ENV_SECRET_PASSWORD }}
 
