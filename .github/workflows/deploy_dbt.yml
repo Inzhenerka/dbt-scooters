@@ -32,7 +32,7 @@ jobs:
         run: uv run sqlfluff lint
 
       - name: ⬇️ Checkout previous state
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: gh-pages
           path: target_state

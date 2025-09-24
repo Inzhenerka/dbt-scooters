@@ -18,13 +18,16 @@ jobs:
 
     steps:
       - name: ⬇️ Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: ⚙️ Install requirements and prepare profiles
+      - name: 📦 Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: ⚙️ Install dependencies and prepare profiles
         run: |
-          pip install -r requirements.txt
-          dbt deps
+          uv sync --locked
+          uv run dbt deps
           cp profiles.example.yml profiles.yml
 
       - name: 🏗️ Build production environment
-        run: dbt build --target prod
+        run: uv run dbt build --target prod
