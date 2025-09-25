@@ -13,6 +13,7 @@ with diff_cte as (
         battery_percent is not null
         and {{ microbatch_condition(ref('battery_state_clean'), end_offset_days=1) }}
 )
+
 select
     *
 from
