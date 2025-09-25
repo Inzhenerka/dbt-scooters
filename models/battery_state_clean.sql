@@ -1,5 +1,4 @@
-select
-    *
+select *
 from
     {{ ref('battery_state') }}
 where

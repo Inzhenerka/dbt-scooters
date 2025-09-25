@@ -14,8 +14,7 @@ with diff_cte as (
         and {{ microbatch_condition(ref('battery_state_clean'), end_offset_days=1) }}
 )
 
-select
-    *
+select *
 from
     diff_cte
 where
