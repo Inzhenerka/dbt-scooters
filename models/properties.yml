@@ -101,6 +101,7 @@ models:
     description: "User events prepared for following processing"
     config:
       materialized: "view"
+      event_time: "timestamp"
     columns:
       - name: "date"
         description: |
@@ -113,14 +114,14 @@ models:
     description: "User events without duplicates"
     config:
       materialized: "incremental"
-      strategy: "merge"
+      incremental_strategy: "merge"
       unique_key: [ "user_id", "timestamp", "type_id" ]
 
   - name: "events_clean_v2"
     description: "User events without duplicates"
     config:
       materialized: "incremental"
-      strategy: "merge"
+      incremental_strategy: "merge"
       unique_key: [ "user_id", "timestamp", "type_id" ]
       meta:
         owner: "Igor Dushnin"
@@ -264,3 +265,31 @@ models:
       - unique_key:
           arguments:
             columns: [ "month", "age", "sex" ]
+
+  - name: "battery_state"
+    description: "Fake simulated data of scooter batteries state in time"
+    config:
+      materialized: "table"
+      event_time: "event_ts"
+
+  - name: "battery_state_clean"
+    description: "Clean simulated data of scooter batteries state in time"
+    config:
+      materialized: "incremental"
+      incremental_strategy: "microbatch"
+      event_time: "event_ts"
+      unique_key: [ "event_ts", "scooter_id" ]
+      begin: "2025-07-01"
+      batch_size: "month"
+      lookback: 1
+
+  - name: "battery_state_diff"
+    description: "Difference between consecutive battery state events"
+    config:
+      materialized: "incremental"
+      incremental_strategy: "microbatch"
+      event_time: "event_ts"
+      unique_key: [ "event_ts", "scooter_id" ]
+      begin: "2025-07-01"
+      batch_size: "month"
+      lookback: 1
