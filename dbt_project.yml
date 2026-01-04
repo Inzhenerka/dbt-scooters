@@ -30,3 +30,5 @@ seeds:
     +persist_docs:
       relation: true
       columns: true
+    ops:
+      +schema: "ops"
