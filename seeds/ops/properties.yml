@@ -1,0 +1,5 @@
+version: 2
+
+seeds:
+  - name: "maintenance_policies"
+    description: "Catalog of preventive maintenance work types and their recommended cadence"
